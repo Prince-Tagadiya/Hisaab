@@ -1,0 +1,14 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // User requested FULL PERMISSIONS for Authenticated users to ensure everything works.
+    // This allows any logged-in user to Read/Write ANY document in the database.
+    // Ideally, we would scope this down for production, but for development/debugging, this removes all permission blockers.
+    
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
