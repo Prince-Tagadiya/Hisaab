@@ -308,6 +308,25 @@ function GroupsPage() {
     const [groups, setGroups] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isLoadingGroups, setIsLoadingGroups] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [mobileOpen, setMobileOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const gradients = [
+        'bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-300 via-violet-600 to-indigo-600',
+        'bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-blue-100 via-blue-600 to-violet-800',
+        'bg-[col-start-1_row-start-1] bg-[linear-gradient(45deg,theme(colors.purple.500),theme(colors.pink.500)_50%,theme(colors.yellow.500)_100%)]',
+        'bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-green-300 via-teal-500 to-purple-600',
+        'bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-purple-800',
+        'bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-violet-600 to-sky-900',
+        'bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-900 via-purple-900 to-violet-600'
+    ];
+    const getGradient = (name)=>{
+        let hash = 0;
+        for(let i = 0; i < (name || '').length; i++)hash = (name || '').charCodeAt(i) + ((hash << 5) - hash);
+        return gradients[Math.abs(hash) % gradients.length];
+    };
+    const getRotation = (name)=>{
+        let hash = 0;
+        for(let i = 0; i < (name || '').length; i++)hash = (name || '').charCodeAt(i) + ((hash << 5) - hash);
+        return Math.abs(hash) % 10 - 5; // -5 to 4 degrees
+    };
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "GroupsPage.useEffect": ()=>{
             if (user) {
@@ -344,7 +363,7 @@ function GroupsPage() {
         children: "Loading..."
     }, void 0, false, {
         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-        lineNumber: 49,
+        lineNumber: 74,
         columnNumber: 23
     }, this);
     if (!user) {
@@ -365,12 +384,12 @@ function GroupsPage() {
                     onAddFriend: handleAddFriend
                 }, void 0, false, {
                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                    lineNumber: 59,
+                    lineNumber: 84,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                lineNumber: 58,
+                lineNumber: 83,
                 columnNumber: 8
             }, this),
             mobileOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -378,7 +397,7 @@ function GroupsPage() {
                 onClick: ()=>setMobileOpen(false)
             }, void 0, false, {
                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                lineNumber: 71,
+                lineNumber: 96,
                 columnNumber: 10
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -400,12 +419,12 @@ function GroupsPage() {
                                                 children: "menu"
                                             }, void 0, false, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 87,
+                                                lineNumber: 112,
                                                 columnNumber: 29
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                            lineNumber: 83,
+                                            lineNumber: 108,
                                             columnNumber: 25
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -419,12 +438,12 @@ function GroupsPage() {
                                                         className: "w-full h-full object-contain"
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 93,
+                                                        lineNumber: 118,
                                                         columnNumber: 33
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 92,
+                                                    lineNumber: 117,
                                                     columnNumber: 29
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -432,13 +451,13 @@ function GroupsPage() {
                                                     children: "Hisab"
                                                 }, void 0, false, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 95,
+                                                    lineNumber: 120,
                                                     columnNumber: 29
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                            lineNumber: 91,
+                                            lineNumber: 116,
                                             columnNumber: 25
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -449,7 +468,7 @@ function GroupsPage() {
                                                     size: 20
                                                 }, void 0, false, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 100,
+                                                    lineNumber: 125,
                                                     columnNumber: 29
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -458,19 +477,19 @@ function GroupsPage() {
                                                     type: "text"
                                                 }, void 0, false, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 101,
+                                                    lineNumber: 126,
                                                     columnNumber: 29
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                            lineNumber: 99,
+                                            lineNumber: 124,
                                             columnNumber: 25
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                    lineNumber: 81,
+                                    lineNumber: 106,
                                     columnNumber: 21
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -483,20 +502,20 @@ function GroupsPage() {
                                                     size: 20
                                                 }, void 0, false, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 112,
+                                                    lineNumber: 137,
                                                     columnNumber: 29
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-white dark:border-[#1a2632]"
                                                 }, void 0, false, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 113,
+                                                    lineNumber: 138,
                                                     columnNumber: 29
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                            lineNumber: 111,
+                                            lineNumber: 136,
                                             columnNumber: 25
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -507,36 +526,36 @@ function GroupsPage() {
                                                 className: "w-full h-full object-cover"
                                             }, void 0, false, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 117,
+                                                lineNumber: 142,
                                                 columnNumber: 34
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "w-full h-full flex items-center justify-center bg-slate-300 text-slate-500 font-bold",
                                                 children: user?.displayName?.charAt(0) || 'U'
                                             }, void 0, false, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 119,
+                                                lineNumber: 144,
                                                 columnNumber: 34
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                            lineNumber: 115,
+                                            lineNumber: 140,
                                             columnNumber: 25
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                    lineNumber: 110,
+                                    lineNumber: 135,
                                     columnNumber: 21
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                            lineNumber: 80,
+                            lineNumber: 105,
                             columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                        lineNumber: 79,
+                        lineNumber: 104,
                         columnNumber: 13
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -560,12 +579,12 @@ function GroupsPage() {
                                                                 size: 32
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 141,
+                                                                lineNumber: 166,
                                                                 columnNumber: 45
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                            lineNumber: 140,
+                                                            lineNumber: 165,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -574,12 +593,12 @@ function GroupsPage() {
                                                                 size: 32
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 144,
+                                                                lineNumber: 169,
                                                                 columnNumber: 45
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                            lineNumber: 143,
+                                                            lineNumber: 168,
                                                             columnNumber: 41
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -588,23 +607,23 @@ function GroupsPage() {
                                                                 size: 32
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 147,
+                                                                lineNumber: 172,
                                                                 columnNumber: 45
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                            lineNumber: 146,
+                                                            lineNumber: 171,
                                                             columnNumber: 41
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 139,
+                                                    lineNumber: 164,
                                                     columnNumber: 37
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 138,
+                                                lineNumber: 163,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -614,26 +633,26 @@ function GroupsPage() {
                                                         className: "absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#2b8cee]/20 blur-3xl"
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 153,
+                                                        lineNumber: 178,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "absolute -bottom-10 -left-10 h-40 w-40 rounded-full bg-purple-500/10 blur-3xl"
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 154,
+                                                        lineNumber: 179,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 152,
+                                                lineNumber: 177,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                        lineNumber: 136,
+                                        lineNumber: 161,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -644,7 +663,7 @@ function GroupsPage() {
                                                 children: "No groups yet!"
                                             }, void 0, false, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 160,
+                                                lineNumber: 185,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -652,13 +671,13 @@ function GroupsPage() {
                                                 children: "Start by creating one to manage your shared expenses with friends, roommates, or for your next trip."
                                             }, void 0, false, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 161,
+                                                lineNumber: 186,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                        lineNumber: 159,
+                                        lineNumber: 184,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -672,20 +691,20 @@ function GroupsPage() {
                                                         size: 20
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 172,
+                                                        lineNumber: 197,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         children: "Create New Group"
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 173,
+                                                        lineNumber: 198,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 168,
+                                                lineNumber: 193,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -694,19 +713,19 @@ function GroupsPage() {
                                                 children: "Join an existing group"
                                             }, void 0, false, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 175,
+                                                lineNumber: 200,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                        lineNumber: 167,
+                                        lineNumber: 192,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                lineNumber: 134,
+                                lineNumber: 159,
                                 columnNumber: 25
                             }, this) : /* Existing Content */ /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                                 children: [
@@ -720,7 +739,7 @@ function GroupsPage() {
                                                         children: "My Groups"
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 189,
+                                                        lineNumber: 214,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -728,13 +747,13 @@ function GroupsPage() {
                                                         children: "Manage your shared expenses and balances."
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 190,
+                                                        lineNumber: 215,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 188,
+                                                lineNumber: 213,
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -750,12 +769,12 @@ function GroupsPage() {
                                                                     size: 20
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                    lineNumber: 196,
+                                                                    lineNumber: 221,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 195,
+                                                                lineNumber: 220,
                                                                 columnNumber: 41
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -765,27 +784,27 @@ function GroupsPage() {
                                                                         children: "Most Recent"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                        lineNumber: 199,
+                                                                        lineNumber: 224,
                                                                         columnNumber: 45
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                                         children: "Highest Balance"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                        lineNumber: 200,
+                                                                        lineNumber: 225,
                                                                         columnNumber: 45
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
                                                                         children: "Alphabetical"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                        lineNumber: 201,
+                                                                        lineNumber: 226,
                                                                         columnNumber: 45
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 198,
+                                                                lineNumber: 223,
                                                                 columnNumber: 41
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -795,18 +814,18 @@ function GroupsPage() {
                                                                     size: 20
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                    lineNumber: 204,
+                                                                    lineNumber: 229,
                                                                     columnNumber: 45
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 203,
+                                                                lineNumber: 228,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 194,
+                                                        lineNumber: 219,
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -817,32 +836,32 @@ function GroupsPage() {
                                                                 size: 20
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 212,
+                                                                lineNumber: 237,
                                                                 columnNumber: 41
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: "Create New Group"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 213,
+                                                                lineNumber: 238,
                                                                 columnNumber: 41
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 208,
+                                                        lineNumber: 233,
                                                         columnNumber: 37
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 192,
+                                                lineNumber: 217,
                                                 columnNumber: 33
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                        lineNumber: 187,
+                                        lineNumber: 212,
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -856,7 +875,7 @@ function GroupsPage() {
                                                     className: "bg-white dark:bg-slate-800 rounded-xl h-[300px] animate-pulse shadow-sm"
                                                 }, i, false, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 222,
+                                                    lineNumber: 247,
                                                     columnNumber: 41
                                                 }, this)),
                                             groups.map((group)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -870,31 +889,61 @@ function GroupsPage() {
                                                                     backgroundImage: group.icon ? `url(${group.icon})` : 'none'
                                                                 },
                                                                 children: [
-                                                                    !group.icon && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                        className: "w-full h-full bg-gradient-to-br from-blue-400 to-indigo-600 opacity-80"
-                                                                    }, void 0, false, {
-                                                                        fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                        lineNumber: 232,
-                                                                        columnNumber: 53
-                                                                    }, this),
+                                                                    !group.icon && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                                        children: [
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                className: `w-full h-full ${getGradient(group.name)}`
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/hisaab-v2/app/groups/page.tsx",
+                                                                                lineNumber: 257,
+                                                                                columnNumber: 57
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                className: "absolute inset-0 bg-black/20"
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/hisaab-v2/app/groups/page.tsx",
+                                                                                lineNumber: 258,
+                                                                                columnNumber: 57
+                                                                            }, this),
+                                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                                className: "absolute inset-0 flex items-center justify-center p-4",
+                                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                                                                    className: "text-3xl font-black text-white text-center leading-none tracking-tighter break-words line-clamp-2 uppercase drop-shadow-lg",
+                                                                                    style: {
+                                                                                        transform: `rotate(${getRotation(group.name)}deg) scale(1.1)`,
+                                                                                        textShadow: '3px 3px 0px rgba(0,0,0,0.2)'
+                                                                                    },
+                                                                                    children: group.name
+                                                                                }, void 0, false, {
+                                                                                    fileName: "[project]/hisaab-v2/app/groups/page.tsx",
+                                                                                    lineNumber: 260,
+                                                                                    columnNumber: 61
+                                                                                }, this)
+                                                                            }, void 0, false, {
+                                                                                fileName: "[project]/hisaab-v2/app/groups/page.tsx",
+                                                                                lineNumber: 259,
+                                                                                columnNumber: 57
+                                                                            }, this)
+                                                                        ]
+                                                                    }, void 0, true),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                                         className: "absolute top-3 right-3 bg-black/20 backdrop-blur-md text-white p-1 rounded-full hover:bg-black/40 transition-colors",
                                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$more$2d$horizontal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__MoreHorizontal$3e$__["MoreHorizontal"], {
                                                                             size: 20
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                            lineNumber: 235,
+                                                                            lineNumber: 273,
                                                                             columnNumber: 53
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                        lineNumber: 234,
+                                                                        lineNumber: 272,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 229,
+                                                                lineNumber: 254,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -909,7 +958,7 @@ function GroupsPage() {
                                                                                     children: group.name
                                                                                 }, void 0, false, {
                                                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                                    lineNumber: 241,
+                                                                                    lineNumber: 279,
                                                                                     columnNumber: 57
                                                                                 }, this),
                                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -919,7 +968,7 @@ function GroupsPage() {
                                                                                             size: 16
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                                            lineNumber: 243,
+                                                                                            lineNumber: 281,
                                                                                             columnNumber: 61
                                                                                         }, this),
                                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -929,24 +978,24 @@ function GroupsPage() {
                                                                                             ]
                                                                                         }, void 0, true, {
                                                                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                                            lineNumber: 244,
+                                                                                            lineNumber: 282,
                                                                                             columnNumber: 61
                                                                                         }, this)
                                                                                     ]
                                                                                 }, void 0, true, {
                                                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                                    lineNumber: 242,
+                                                                                    lineNumber: 280,
                                                                                     columnNumber: 57
                                                                                 }, this)
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                            lineNumber: 240,
+                                                                            lineNumber: 278,
                                                                             columnNumber: 53
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                        lineNumber: 239,
+                                                                        lineNumber: 277,
                                                                         columnNumber: 49
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -960,7 +1009,7 @@ function GroupsPage() {
                                                                                         children: "Status"
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                                        lineNumber: 250,
+                                                                                        lineNumber: 288,
                                                                                         columnNumber: 57
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -968,13 +1017,13 @@ function GroupsPage() {
                                                                                         children: group.status === 'owed' ? 'You are owed' : group.status === 'owe' ? 'You owe' : 'All settled up'
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                                        lineNumber: 251,
+                                                                                        lineNumber: 289,
                                                                                         columnNumber: 57
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                                lineNumber: 249,
+                                                                                lineNumber: 287,
                                                                                 columnNumber: 53
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -982,30 +1031,30 @@ function GroupsPage() {
                                                                                 children: group.status === 'settled' ? 'Settled' : `${group.currency || '$'}${Math.abs(group.myBalance).toFixed(2)}`
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                                lineNumber: 259,
+                                                                                lineNumber: 297,
                                                                                 columnNumber: 53
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                        lineNumber: 248,
+                                                                        lineNumber: 286,
                                                                         columnNumber: 49
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 238,
+                                                                lineNumber: 276,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                        lineNumber: 228,
+                                                        lineNumber: 253,
                                                         columnNumber: 41
                                                     }, this)
                                                 }, group._id, false, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 227,
+                                                    lineNumber: 252,
                                                     columnNumber: 37
                                                 }, this)),
                                             groups.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("article", {
@@ -1021,12 +1070,12 @@ function GroupsPage() {
                                                                 size: 32
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                lineNumber: 280,
+                                                                lineNumber: 318,
                                                                 columnNumber: 49
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                            lineNumber: 279,
+                                                            lineNumber: 317,
                                                             columnNumber: 45
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1036,7 +1085,7 @@ function GroupsPage() {
                                                                     children: "Create New Group"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                    lineNumber: 283,
+                                                                    lineNumber: 321,
                                                                     columnNumber: 49
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1044,54 +1093,54 @@ function GroupsPage() {
                                                                     children: "Start tracking expenses for a new activity"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                                    lineNumber: 284,
+                                                                    lineNumber: 322,
                                                                     columnNumber: 49
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                            lineNumber: 282,
+                                                            lineNumber: 320,
                                                             columnNumber: 45
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                    lineNumber: 278,
+                                                    lineNumber: 316,
                                                     columnNumber: 41
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                                lineNumber: 274,
+                                                lineNumber: 312,
                                                 columnNumber: 37
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                                        lineNumber: 219,
+                                        lineNumber: 244,
                                         columnNumber: 29
                                     }, this)
                                 ]
                             }, void 0, true)
                         }, void 0, false, {
                             fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                            lineNumber: 130,
+                            lineNumber: 155,
                             columnNumber: 17
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                        lineNumber: 129,
+                        lineNumber: 154,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-                lineNumber: 77,
+                lineNumber: 102,
                 columnNumber: 8
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/hisaab-v2/app/groups/page.tsx",
-        lineNumber: 56,
+        lineNumber: 81,
         columnNumber: 5
     }, this);
 }

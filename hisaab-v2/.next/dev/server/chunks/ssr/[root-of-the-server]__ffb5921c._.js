@@ -214,10 +214,12 @@ function AuthProvider({ children }) {
                         }
                     });
                     const data = await res.json();
+                    // Handling redirects based on response
                     if (data.isNewUser) {
                         router.push('/register');
                     } else if (window.location.pathname === '/login' || window.location.pathname === '/') {
                         // Only redirect to dashboard if currently on public pages
+                        // Avoid redirecting if user is on specific page already 
                         router.push('/dashboard');
                     }
                 } catch (e) {
@@ -235,7 +237,7 @@ function AuthProvider({ children }) {
             console.error("Login failed", error);
         }
     };
-    const logout = async ()=>{
+    const signOutUser = async ()=>{
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f40$firebase$2f$auth$2f$dist$2f$node$2d$esm$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["signOut"])(__TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$lib$2f$firebaseClient$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["auth"]);
         router.push('/');
     };
@@ -248,13 +250,13 @@ function AuthProvider({ children }) {
             user,
             loading,
             signInWithGoogle,
-            logout,
+            signOut: signOutUser,
             getIdToken
         },
         children: children
     }, void 0, false, {
         fileName: "[project]/hisaab-v2/components/AuthContext.tsx",
-        lineNumber: 74,
+        lineNumber: 76,
         columnNumber: 5
     }, this);
 }

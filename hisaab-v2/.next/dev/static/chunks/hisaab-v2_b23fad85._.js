@@ -288,7 +288,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules
 var __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__ = __turbopack_context__.i("[project]/hisaab-v2/node_modules/lucide-react/dist/esm/icons/x.js [app-client] (ecmascript) <export default as X>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$bell$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Bell$3e$__ = __turbopack_context__.i("[project]/hisaab-v2/node_modules/lucide-react/dist/esm/icons/bell.js [app-client] (ecmascript) <export default as Bell>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$user$2d$plus$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__UserPlus$3e$__ = __turbopack_context__.i("[project]/hisaab-v2/node_modules/lucide-react/dist/esm/icons/user-plus.js [app-client] (ecmascript) <export default as UserPlus>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__ = __turbopack_context__.i("[project]/hisaab-v2/node_modules/lucide-react/dist/esm/icons/users.js [app-client] (ecmascript) <export default as Users>");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
@@ -524,41 +523,60 @@ function RequestsPage() {
                                         className: "relative bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "h-28 bg-gradient-to-r from-[#2b8cee] to-purple-600 relative",
+                                                className: "h-28 bg-slate-200 bg-cover bg-center relative",
+                                                style: {
+                                                    backgroundImage: req.groupIcon ? `url(${req.groupIcon})` : 'none'
+                                                },
                                                 children: [
+                                                    !req.groupIcon && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "w-full h-full bg-gradient-to-br from-blue-400 to-indigo-600 opacity-80"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/hisaab-v2/app/requests/page.tsx",
+                                                        lineNumber: 140,
+                                                        columnNumber: 45
+                                                    }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "absolute inset-0 bg-black/10"
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                        lineNumber: 139,
+                                                        lineNumber: 142,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                         className: "absolute -bottom-6 left-6",
                                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                             className: "size-16 rounded-xl bg-white dark:bg-[#1a2632] p-1 shadow-lg",
-                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                                className: "w-full h-full rounded-lg bg-[#f0f4f8] dark:bg-slate-700 flex items-center justify-center text-[#2b8cee]",
-                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$users$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Users$3e$__["Users"], {
-                                                                    size: 32
+                                                            children: req.groupIcon ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                                                src: req.groupIcon,
+                                                                className: "w-full h-full rounded-lg object-cover",
+                                                                alt: req.groupName
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/hisaab-v2/app/requests/page.tsx",
+                                                                lineNumber: 146,
+                                                                columnNumber: 53
+                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "w-full h-full rounded-lg bg-gradient-to-br from-[#2b8cee] to-purple-600 flex items-center justify-center text-white",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                    className: "text-2xl font-bold uppercase",
+                                                                    children: req.groupName?.charAt(0) || 'G'
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                    lineNumber: 143,
-                                                                    columnNumber: 53
+                                                                    lineNumber: 149,
+                                                                    columnNumber: 58
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                lineNumber: 142,
-                                                                columnNumber: 49
+                                                                lineNumber: 148,
+                                                                columnNumber: 53
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                            lineNumber: 141,
+                                                            lineNumber: 144,
                                                             columnNumber: 45
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                        lineNumber: 140,
+                                                        lineNumber: 143,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
@@ -579,7 +597,7 @@ function RequestsPage() {
                                                                     children: req.groupName
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                    lineNumber: 152,
+                                                                    lineNumber: 159,
                                                                     columnNumber: 49
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -589,7 +607,7 @@ function RequestsPage() {
                                                                             size: 14
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                            lineNumber: 154,
+                                                                            lineNumber: 161,
                                                                             columnNumber: 53
                                                                         }, this),
                                                                         "Invited by ",
@@ -598,24 +616,24 @@ function RequestsPage() {
                                                                             children: req.fromUser?.name || 'Someone'
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                            lineNumber: 155,
+                                                                            lineNumber: 162,
                                                                             columnNumber: 64
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                    lineNumber: 153,
+                                                                    lineNumber: 160,
                                                                     columnNumber: 49
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                            lineNumber: 151,
+                                                            lineNumber: 158,
                                                             columnNumber: 45
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                        lineNumber: 150,
+                                                        lineNumber: 157,
                                                         columnNumber: 41
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -631,7 +649,7 @@ function RequestsPage() {
                                                                             size: 18
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                            lineNumber: 168,
+                                                                            lineNumber: 175,
                                                                             columnNumber: 57
                                                                         }, this),
                                                                         " Accept"
@@ -639,7 +657,7 @@ function RequestsPage() {
                                                                 }, void 0, true)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                lineNumber: 161,
+                                                                lineNumber: 168,
                                                                 columnNumber: 45
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -651,26 +669,26 @@ function RequestsPage() {
                                                                         size: 18
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                        lineNumber: 177,
+                                                                        lineNumber: 184,
                                                                         columnNumber: 49
                                                                     }, this),
                                                                     " Decline"
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                                lineNumber: 172,
+                                                                lineNumber: 179,
                                                                 columnNumber: 45
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                        lineNumber: 160,
+                                                        lineNumber: 167,
                                                         columnNumber: 41
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/hisaab-v2/app/requests/page.tsx",
-                                                lineNumber: 149,
+                                                lineNumber: 156,
                                                 columnNumber: 37
                                             }, this)
                                         ]

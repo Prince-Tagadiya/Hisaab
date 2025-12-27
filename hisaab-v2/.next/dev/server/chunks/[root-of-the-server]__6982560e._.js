@@ -181,9 +181,7 @@ const verifyIdToken = async (token)=>{
 
 __turbopack_context__.s([
     "GET",
-    ()=>GET,
-    "POST",
-    ()=>POST
+    ()=>GET
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/hisaab-v2/node_modules/next/server.js [app-route] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/hisaab-v2/lib/db.ts [app-route] (ecmascript)");
@@ -203,92 +201,35 @@ async function GET(req) {
                 status: 401
             });
         }
-        const token = authHeader.split(' ')[1];
-        const decoded = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["verifyIdToken"])(token);
-        if (!decoded) {
+        const token = authHeader.split('Bearer ')[1];
+        const user = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["verifyIdToken"])(token);
+        if (!user) {
             return __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-                error: 'Invalid Token'
+                error: 'Unauthorized'
             }, {
                 status: 401
             });
         }
         await (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])();
-        // Fetch pending requests for this user (by UID or Email)
+        // Find pending requests for this user (by ID or Email)
         const requests = await __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$models$2f$Request$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].find({
             $or: [
                 {
-                    'toUser.userId': decoded.uid
+                    'toUser.userId': user.uid
                 },
                 {
-                    'toUser.email': decoded.email
+                    'toUser.email': user.email
                 }
             ],
             status: 'pending'
         }).sort({
             createdAt: -1
         });
-        // Separate them for frontend convenience
-        const friendRequests = requests.filter((r)=>r.type === 'friend').map((r)=>({
-                id: r._id.toString(),
-                fromUid: r.fromUser.userId,
-                fromName: r.fromUser.name,
-                fromEmail: r.fromUser.email,
-                fromPhotoURL: r.fromUser.photoURL
-            }));
-        const groupInvites = requests.filter((r)=>r.type === 'group_invite').map((r)=>({
-                id: r._id.toString(),
-                groupId: r.groupId,
-                groupName: r.groupName,
-                fromName: r.fromUser.name,
-                groupDetails: {
-                    type: 'Group'
-                } // Could fetch actual Group details if needed
-            }));
-        // SEED DATA FOR DEMO IF EMPTY (To satisfy "make with real data" request immediately for testing)
-        // Only if query param seed=true? No, let's strictly serve DB data.
-        // If empty, frontend shows empty state.
         return __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            friendRequests,
-            groupInvites
+            requests
         });
     } catch (error) {
-        console.error("API Error:", error);
-        return __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: error.message
-        }, {
-            status: 500
-        });
-    }
-}
-async function POST(req) {
-    try {
-        const authHeader = req.headers.get('Authorization');
-        const token = authHeader?.split(' ')[1];
-        if (!token) return __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: 'Unauthorized'
-        }, {
-            status: 401
-        });
-        const decoded = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$lib$2f$auth$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["verifyIdToken"])(token);
-        if (!decoded) return __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            error: 'Invalid Token'
-        }, {
-            status: 401
-        });
-        const body = await req.json();
-        const { requestId, action } = body; // action: 'accepted' | 'declined'
-        await (0, __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$lib$2f$db$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"])();
-        if (action === 'accepted' || action === 'declined') {
-            await __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$models$2f$Request$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].findByIdAndUpdate(requestId, {
-                status: action
-            });
-        // Logic to actually Add Friend or Join Group would go here
-        // For now, just updating status is enough to remove it from "Pending" list
-        }
-        return __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
-            success: true
-        });
-    } catch (error) {
+        console.error("Fetch Requests Error:", error);
         return __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json({
             error: error.message
         }, {

@@ -78,6 +78,24 @@ type ApiRouteConfig = {
   type __Unused = __Check
 }
 
+// Validate ../../../app/friends/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/friends">> = Specific
+  const handler = {} as typeof import("../../../app/friends/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/group/[groupId]/members/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/group/[groupId]/members">> = Specific
+  const handler = {} as typeof import("../../../app/group/[groupId]/members/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/group/[groupId]/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/group/[groupId]">> = Specific
@@ -204,10 +222,28 @@ type ApiRouteConfig = {
   type __Unused = __Check
 }
 
+// Validate ../../../app/api/friends/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/friends">> = Specific
+  const handler = {} as typeof import("../../../app/api/friends/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/groups/[groupId]/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/groups/[groupId]">> = Specific
   const handler = {} as typeof import("../../../app/api/groups/[groupId]/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/groups/join/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/groups/join">> = Specific
+  const handler = {} as typeof import("../../../app/api/groups/join/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

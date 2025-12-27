@@ -45,6 +45,12 @@ export async function GET(
         return NextResponse.json({ error: 'Group not found' }, { status: 404 });
     }
 
+    // Auto-generate joinCode if missing (Legacy support)
+    if (!group.joinCode) {
+         group.joinCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+         await group.save();
+    }
+
     // 3. Fetch Members
     const membersList = await GroupMember.find({ groupId });
     const userIds = membersList.map(m => m.userId);

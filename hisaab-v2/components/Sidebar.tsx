@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, UserCircle, Plus, ArrowUpRight, Users, UserPlus, LogOut, Bell } from 'lucide-react';
+import { LayoutDashboard, UserCircle, Plus, ArrowUpRight, Users, UserPlus, LogOut, Bell, UserCheck } from 'lucide-react';
 
 export default function Sidebar({ 
   onLogout, 
@@ -66,16 +66,9 @@ export default function Sidebar({
       <nav className="flex-1 px-4 space-y-2 overflow-y-auto py-4">
         <NavItem to="/dashboard" icon={LayoutDashboard} label="Dashboard" badge={0} />
         <NavItem to="/groups" icon={Users} label="My Groups" badge={0} />
+        <NavItem to="/friends" icon={UserCheck} label="My Friends" badge={0} />
         <NavItem to="/requests" icon={Bell} label="Requests" badge={0} />
         <NavItem to="/profile" icon={UserCircle} label="Profile" badge={0} />
-
-        <div className="pt-4 pb-2 px-4">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Quick Actions</p>
-        </div>
-
-        <ActionItem onClick={onCreateGroup} icon={Plus} label="New Group" />
-        <ActionItem onClick={onJoinGroup} icon={ArrowUpRight} label="Join Group" />
-        <ActionItem onClick={onAddFriend} icon={UserPlus} label="Add Friend" />
       </nav>
 
       <div className="p-4 border-t border-slate-100 dark:border-gray-800">

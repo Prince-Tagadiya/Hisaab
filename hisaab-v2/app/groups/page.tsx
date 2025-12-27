@@ -7,7 +7,7 @@ import Sidebar from '../../components/Sidebar';
 import Link from 'next/link';
 import { 
   Search, Bell, Filter, Plus, MoreHorizontal, Users, 
-  Wallet, ArrowUpDown, ChevronDown 
+  Wallet, ArrowUpDown, ChevronDown, ArrowUpRight 
 } from 'lucide-react';
 
 export default function GroupsPage() {
@@ -16,6 +16,31 @@ export default function GroupsPage() {
   const [groups, setGroups] = useState<any[]>([]);
   const [isLoadingGroups, setIsLoadingGroups] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const gradients = [
+    'bg-[conic-gradient(at_bottom_left,_var(--tw-gradient-stops))] from-fuchsia-300 via-violet-600 to-indigo-600',
+    'bg-[conic-gradient(at_top_right,_var(--tw-gradient-stops))] from-blue-100 via-blue-600 to-violet-800',
+    'bg-[col-start-1_row-start-1] bg-[linear-gradient(45deg,theme(colors.purple.500),theme(colors.pink.500)_50%,theme(colors.yellow.500)_100%)]',
+    'bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-green-300 via-teal-500 to-purple-600',
+    'bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-yellow-200 via-red-500 to-purple-800',
+    'bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-200 via-violet-600 to-sky-900',
+    'bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-gray-900 via-purple-900 to-violet-600'
+  ];
+  
+  const getGradient = (name: string) => {
+    let hash = 0;
+    for (let i = 0; i < (name || '').length; i++) hash = (name || '').charCodeAt(i) + ((hash << 5) - hash);
+    return gradients[Math.abs(hash) % gradients.length];
+  };
+
+  const getRotation = (name: string) => {
+    let hash = 0;
+    for (let i = 0; i < (name || '').length; i++) hash = (name || '').charCodeAt(i) + ((hash << 5) - hash);
+    return (Math.abs(hash) % 10) - 5; // -5 to 4 degrees
+  };
+
+
+
 
   useEffect(() => {
     if (user) {
@@ -204,6 +229,14 @@ export default function GroupsPage() {
                                             <ChevronDown className="text-slate-400" size={20} />
                                         </div>
                                     </div>
+                                    {/* Join Button */}
+                                    <button 
+                                        onClick={handleJoinGroup}
+                                        className="hidden sm:flex h-10 px-5 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-sm font-bold rounded-lg transition-all items-center gap-2 whitespace-nowrap shadow-sm hover:shadow-md"
+                                    >
+                                        <ArrowUpRight size={20} />
+                                        <span>Join Group</span>
+                                    </button>
                                     {/* Create Button */}
                                     <button 
                                         onClick={handleCreateGroup}
@@ -227,9 +260,22 @@ export default function GroupsPage() {
                                     <Link href={`/group/${group._id}`} key={group._id}>
                                         <article className="group relative flex flex-col bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-md hover:border-[#2b8cee]/30 transition-all duration-200 cursor-pointer h-full">
                                             <div className="h-32 bg-slate-200 bg-cover bg-center relative" style={{ backgroundImage: group.icon ? `url(${group.icon})` : 'none' }}>
-                                                {/* Fallback specific pattern if no icon? Or random gradient? */}
                                                 {!group.icon && (
-                                                    <div className="w-full h-full bg-gradient-to-br from-blue-400 to-indigo-600 opacity-80" />
+                                                    <>
+                                                        <div className={`w-full h-full ${getGradient(group.name)}`} />
+                                                        <div className="absolute inset-0 bg-black/20" />
+                                                        <div className="absolute inset-0 flex items-center justify-center p-4">
+                                                            <h3 
+                                                                className="text-3xl font-black text-white text-center leading-none tracking-tighter break-words line-clamp-2 uppercase drop-shadow-lg"
+                                                                style={{ 
+                                                                    transform: `rotate(${getRotation(group.name)}deg) scale(1.1)`,
+                                                                    textShadow: '3px 3px 0px rgba(0,0,0,0.2)'
+                                                                }}
+                                                            >
+                                                                {group.name}
+                                                            </h3>
+                                                        </div>
+                                                    </>
                                                 )}
                                                 <div className="absolute top-3 right-3 bg-black/20 backdrop-blur-md text-white p-1 rounded-full hover:bg-black/40 transition-colors">
                                                     <MoreHorizontal size={20} />

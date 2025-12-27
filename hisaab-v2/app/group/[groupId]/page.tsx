@@ -236,7 +236,7 @@ export default function GroupDetailsPage() {
                             <div className="bg-white dark:bg-[#1a2632] rounded-xl shadow-sm border border-[#e7edf3] dark:border-[#2a3845] overflow-hidden flex flex-col">
                                 <div className="p-5 border-b border-[#e7edf3] dark:border-[#2a3845] flex items-center justify-between bg-slate-50/50 dark:bg-[#23303d]/50">
                                     <h2 className="font-bold text-lg text-[#0d141b] dark:text-white">Group Balances</h2>
-                                    <button className="text-[#2b8cee] text-sm font-bold hover:underline">See details</button>
+                                    <Link href={`/group/${groupId}/members`} className="text-[#2b8cee] text-sm font-bold hover:underline">See details</Link>
                                 </div>
                                 <div className="p-2 flex flex-col">
                                     {group.memberBalances?.map((member: any) => {

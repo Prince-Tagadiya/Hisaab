@@ -505,6 +505,11 @@ async function GET(req, { params } // Params is a Promise in Next 15+ or App Rou
                 status: 404
             });
         }
+        // Auto-generate joinCode if missing (Legacy support)
+        if (!group.joinCode) {
+            group.joinCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+            await group.save();
+        }
         // 3. Fetch Members
         const membersList = await __TURBOPACK__imported__module__$5b$project$5d2f$hisaab$2d$v2$2f$models$2f$GroupMember$2e$ts__$5b$app$2d$route$5d$__$28$ecmascript$29$__["default"].find({
             groupId
