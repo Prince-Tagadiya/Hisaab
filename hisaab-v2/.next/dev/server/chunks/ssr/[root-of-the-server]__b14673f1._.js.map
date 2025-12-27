@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///Applications/PRINCE/PROJECTS/Hisaab/hisaab-v2/app/group/%5BgroupId%5D/page.tsx"],"sourcesContent":["export default function GroupDetailsPage({ params }: { params: { groupId: string } }) {\n  return (\n    <div className=\"p-10\">\n      <h1 className=\"text-2xl font-bold\">Group Details</h1>\n      <p>Group ID: {params.groupId}</p>\n      <p className=\"text-gray-500 mt-4\">This page is under construction. Features coming soon!</p>\n    </div>\n  )\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS,iBAAiB,EAAE,MAAM,EAAmC;IAClF,qBACE,8PAAC;QAAI,WAAU;;0BACb,8PAAC;gBAAG,WAAU;0BAAqB;;;;;;0BACnC,8PAAC;;oBAAE;oBAAW,OAAO,OAAO;;;;;;;0BAC5B,8PAAC;gBAAE,WAAU;0BAAqB;;;;;;;;;;;;AAGxC"}}]
+}
