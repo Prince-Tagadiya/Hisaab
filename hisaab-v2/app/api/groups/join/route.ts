@@ -28,14 +28,10 @@ export async function POST(req: Request) {
         const existing = await GroupMember.findOne({ groupId: group._id, userId });
         if (existing) return NextResponse.json({ error: 'You are already a member of this group' }, { status: 400 });
 
-        // Get User Details for Member Entry
-        const user = await User.findOne({ firebaseUid: userId });
-
         await GroupMember.create({
             groupId: group._id,
             userId,
-            name: user?.name || decodedToken.name || 'Unknown',
-            email: user?.email || decodedToken.email || '',
+            role: 'member',
             joinedAt: new Date()
         });
 

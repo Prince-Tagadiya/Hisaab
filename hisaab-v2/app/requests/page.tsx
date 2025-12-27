@@ -20,6 +20,9 @@ export default function RequestsPage() {
   const [showFriendModal, setShowFriendModal] = useState(false);
   const [joinCode, setJoinCode] = useState('');
   const [friendEmail, setFriendEmail] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
@@ -149,6 +152,39 @@ export default function RequestsPage() {
     } finally {
         setIsSubmitting(false);
     }
+  };
+
+  // Debounced search for users
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(async () => {
+      if (searchQuery.trim().length >= 2) {
+        setIsSearching(true);
+        try {
+          const token = await getIdToken();
+          const res = await fetch(`/api/users/search?q=${encodeURIComponent(searchQuery)}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          const data = await res.json();
+          if (res.ok) {
+            setSearchResults(data.users || []);
+          }
+        } catch (err) {
+          console.error('Search failed', err);
+        } finally {
+          setIsSearching(false);
+        }
+      } else {
+        setSearchResults([]);
+      }
+    }, 300);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchQuery]);
+
+  const handleSelectUser = (selectedUser: any) => {
+    setFriendEmail(selectedUser.email);
+    setSearchQuery('');
+    setSearchResults([]);
   };
 
   const groupRequests = requests.filter(r => r.type === 'group_invite');
@@ -383,41 +419,86 @@ export default function RequestsPage() {
            </div>
        )}
 
-       {/* Add Friend Modal */}
-       {showFriendModal && (
-           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-               <div className="bg-white dark:bg-[#1a2632] rounded-2xl shadow-xl w-full max-w-md p-6 animate-in zoom-in-95 duration-200">
-                   <div className="flex justify-between items-center mb-6">
-                       <h3 className="text-xl font-bold text-slate-900 dark:text-white">Add Friend</h3>
-                       <button onClick={() => setShowFriendModal(false)} className="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
-                           <X size={24} />
-                       </button>
-                   </div>
-                   <form onSubmit={handleFriendRequestSubmit} className="space-y-4">
-                       <div>
-                           <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Friend's Email Address</label>
-                           <input 
-                               type="email" 
-                               value={friendEmail}
-                               onChange={(e) => setFriendEmail(e.target.value)}
-                               placeholder="friend@example.com"
-                               className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#2b8cee] outline-none"
-                               required
-                           />
-                           <p className="text-xs text-slate-500 mt-2">We'll send them an invitation to connect.</p>
-                       </div>
-                       {formError && <p className="text-red-500 text-sm font-medium">{formError}</p>}
-                       <button 
-                           type="submit" 
-                           disabled={isSubmitting}
-                           className="w-full py-3 rounded-xl bg-[#2b8cee] hover:bg-[#1a6bbd] text-white font-bold transition-colors shadow-lg shadow-blue-500/20 disabled:opacity-50"
-                       >
-                           {isSubmitting ? 'Sending Request...' : 'Send Friend Request'}
-                       </button>
-                   </form>
-               </div>
-           </div>
-       )}
+        {/* Add Friend Modal */}
+        {showFriendModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+                <div className="bg-white dark:bg-[#1a2632] rounded-2xl shadow-xl w-full max-w-md p-6 animate-in zoom-in-95 duration-200">
+                    <div className="flex justify-between items-center mb-6">
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">Add Friend</h3>
+                        <button onClick={() => { setShowFriendModal(false); setSearchQuery(''); setSearchResults([]); }} className="text-slate-500 hover:text-slate-700 dark:hover:text-slate-300">
+                            <X size={24} />
+                        </button>
+                    </div>
+                    
+                    {/* Search Box */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Search by username or email</label>
+                        <input 
+                            type="text" 
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            placeholder="Type to search..."
+                            className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#2b8cee] outline-none"
+                        />
+                        {isSearching && <p className="text-xs text-slate-400 mt-2">Searching...</p>}
+                    </div>
+
+                    {/* Search Results */}
+                    {searchResults.length > 0 && (
+                        <div className="mb-4 max-h-60 overflow-y-auto border border-slate-200 dark:border-slate-700 rounded-lg">
+                            {searchResults.map((user) => (
+                                <button
+                                    key={user.userId}
+                                    onClick={() => handleSelectUser(user)}
+                                    className="w-full flex items-center gap-3 p-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-left border-b last:border-b-0 border-slate-100 dark:border-slate-700"
+                                >
+                                    {user.photoURL ? (
+                                        <img src={user.photoURL} alt={user.name} className="w-10 h-10 rounded-full object-cover" />
+                                    ) : (
+                                        <div className="w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-sm font-bold">
+                                            {user.name?.charAt(0) || 'U'}
+                                        </div>
+                                    )}
+                                    <div className="flex-1 min-w-0">
+                                        <p className="text-sm font-semibold text-slate-900 dark:text-white truncate">{user.name}</p>
+                                        <p className="text-xs text-slate-500 truncate">@{user.username}</p>
+                                        <p className="text-xs text-slate-400 truncate">{user.email}</p>
+                                    </div>
+                                    <UserPlus size={18} className="text-[#2b8cee]" />
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                    
+                    {searchQuery.length >= 2 && searchResults.length === 0 && !isSearching && (
+                        <p className="text-sm text-slate-500 mb-4 text-center py-4">No users found</p>
+                    )}
+
+                    <form onSubmit={handleFriendRequestSubmit} className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Or enter email directly</label>
+                            <input 
+                                type="email" 
+                                value={friendEmail}
+                                onChange={(e) => setFriendEmail(e.target.value)}
+                                placeholder="friend@example.com"
+                                className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-[#2b8cee] outline-none"
+                                required
+                            />
+                            <p className="text-xs text-slate-500 mt-2">We'll send them an invitation to connect.</p>
+                        </div>
+                        {formError && <p className="text-red-500 text-sm font-medium">{formError}</p>}
+                        <button 
+                            type="submit" 
+                            disabled={isSubmitting}
+                            className="w-full py-3 rounded-xl bg-[#2b8cee] hover:bg-[#1a6bbd] text-white font-bold transition-colors shadow-lg shadow-blue-500/20 disabled:opacity-50"
+                        >
+                            {isSubmitting ? 'Sending Request...' : 'Send Friend Request'}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        )}
     </div>
   );
 }

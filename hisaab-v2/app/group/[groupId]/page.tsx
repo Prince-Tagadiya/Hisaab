@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../../components/AuthContext';
 import { useRouter, useParams } from 'next/navigation';
 import Sidebar from '../../../components/Sidebar';
+import AddExpenseModal from '../../../components/AddExpenseModal';
 import Link from 'next/link';
 import { 
   Search, Bell, Filter, Plus, MoreHorizontal, Users, 
@@ -22,6 +23,7 @@ export default function GroupDetailsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showJoinCode, setShowJoinCode] = useState(false);
+  const [showExpenseModal, setShowExpenseModal] = useState(false);
 
   useEffect(() => {
     if (user && groupId) {
@@ -44,6 +46,33 @@ export default function GroupDetailsPage() {
           console.error("Failed to fetch group details", e);
       } finally {
           setIsLoading(false);
+      }
+  };
+
+  const handleSaveExpense = async (expenseData: any) => {
+      try {
+          const token = await getIdToken();
+          const res = await fetch(`/api/expenses`, {
+              method: 'POST',
+              headers: { 
+                  'Authorization': `Bearer ${token}`,
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                  ...expenseData,
+                  groupId: groupId
+              })
+          });
+          
+          if (res.ok) {
+              // Refresh group details to show new expense
+              fetchGroupDetails();
+          } else {
+              const error = await res.json();
+              console.error('Failed to save expense:', error);
+          }
+      } catch (e) {
+          console.error("Failed to save expense", e);
       }
   };
 
@@ -155,7 +184,10 @@ export default function GroupDetailsPage() {
                                 <BarChart3 size={20} />
                                 <span className="hidden sm:inline">Report</span>
                             </button>
-                            <button className="flex-1 md:flex-none h-11 px-6 rounded-lg bg-[#2b8cee] hover:bg-blue-600 text-white font-bold text-sm shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center gap-2">
+                            <button 
+                                onClick={() => setShowExpenseModal(true)}
+                                className="flex-1 md:flex-none h-11 px-6 rounded-lg bg-[#2b8cee] hover:bg-blue-600 text-white font-bold text-sm shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center gap-2"
+                            >
                                 <Plus size={20} />
                                 Add Expense
                             </button>
@@ -290,6 +322,16 @@ export default function GroupDetailsPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Add Expense Modal */}
+            <AddExpenseModal
+                isOpen={showExpenseModal}
+                onClose={() => setShowExpenseModal(false)}
+                groupId={groupId}
+                members={group?.members || []}
+                currentUserId={user?.uid}
+                onSave={handleSaveExpense}
+            />
        </main>
     </div>
   );

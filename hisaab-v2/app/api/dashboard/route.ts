@@ -37,16 +37,22 @@ export async function GET(req: NextRequest) {
     });
 
     // 2. Fetch Groups
-    // Find GroupMembers for this user, populate the Group data
+    // Find GroupMembers for this user
     const memberships = await GroupMember.find({ userId })
       .sort({ joinedAt: -1 })
-      .limit(10)
-      .populate('groupId');
+      .limit(10);
+
+    // Manually fetch groups
+    const groupIds = memberships.map(m => m.groupId);
+    const groupDocs = await Group.find({ _id: { $in: groupIds } });
+    
+    // Create a map for quick lookup
+    const groupMap = new Map(groupDocs.map(g => [g._id.toString(), g]));
 
     // Transform memberships to group view models
     const groups = memberships.map(m => {
-      const g = m.groupId;
-      if (!g) return null; // Handle if group deleted but member record exists (shouldn't happen with strict logic but safe)
+      const g = groupMap.get(m.groupId.toString());
+      if (!g) return null;
       
       // Calculate specific balance for THIS group (contextId = group._id)
       const groupBalance = balances.find(b => 
@@ -56,11 +62,9 @@ export async function GET(req: NextRequest) {
       return {
         _id: g._id,
         name: g.name,
-        currency: g.currency,
-        imageUrl: g.icon, // Assuming icon is url or symbol
-        memberCount: 0, // We might need an extra query or store count on group. For now 0 or skipping.
-        // Actually, we can get member count if we want, but it's expensive. 
-        // Let's stick to basic info.
+        currency: g.currency || '$',
+        imageUrl: g.icon || null,
+        memberCount: 0,
         myBalance: {
           toPay: groupBalance?.toPay || 0,
           toReceive: groupBalance?.toReceive || 0

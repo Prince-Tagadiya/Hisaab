@@ -25,7 +25,7 @@ interface DashboardData {
 }
 
 export default function Dashboard() {
-  const { user, loading, logout, getIdToken } = useAuth();
+  const { user, loading, signOut, getIdToken } = useAuth();
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
@@ -76,7 +76,7 @@ export default function Dashboard() {
       {/* Sidebar (Desktop) */}
       <aside className="hidden lg:flex w-[280px] bg-white dark:bg-[#1a2632] border-r border-gray-200 dark:border-gray-800 flex-col fixed inset-y-0 z-30">
          <Sidebar 
-            onLogout={logout}
+            onLogout={signOut}
             onCreateGroup={() => router.push('/groups/create')} 
             onJoinGroup={() => {}} 
             onAddFriend={() => {}}
@@ -91,7 +91,7 @@ export default function Dashboard() {
         ></div>
         <div className={`absolute top-0 left-0 bottom-0 w-[280px] bg-white dark:bg-[#1a2632] shadow-2xl transition-transform duration-300 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
           <Sidebar 
-            onLogout={logout} 
+            onLogout={signOut} 
             onCreateGroup={() => router.push('/groups/create')} 
             onJoinGroup={() => {}} 
             onAddFriend={() => {}}
@@ -130,7 +130,7 @@ export default function Dashboard() {
 
             {/* Right: Actions & Avatar */}
             <div className="flex items-center gap-4">
-              <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 relative group cursor-pointer" onClick={logout}>
+              <div className="h-10 w-10 overflow-hidden rounded-full border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 relative group cursor-pointer" onClick={signOut}>
                  {user.photoURL ? (
                     <img alt="Profile" className="h-full w-full object-cover" src={user.photoURL} />
                  ) : (
